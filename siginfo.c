@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	pfd[1].fd = fd;
 	pfd[1].events = POLLIN;
 
-	if (termios_stdin_char_mode(true) < 0) {
+	if (isatty(STDIN_FILENO) && termios_stdin_char_mode(true) < 0) {
 		perror("termios_stdin_char_mode");
 		goto fail;
 	}
@@ -87,7 +87,9 @@ int main(int argc, char *argv[])
 fail:
 	ret = -1;
 done:
-	termios_reset();
+	if (isatty(STDIN_FILENO)) {
+		termios_reset();
+	}
 	close(fd);
 	return ret;
 }
