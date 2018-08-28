@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
 			printf("Signo: %d\n", ssi.ssi_signo);
 			printf("Code: %" PRId32 "\n", ssi.ssi_code);
 			printf("\n");
+                        fflush(stdout);
 		}
 	}
 
