@@ -1,8 +1,10 @@
 #include <stdbool.h>
 #include <termios.h>
 #include <unistd.h>
+#include <stdio.h>
 
-#include "log.h"
+#define sysfail perror
+#define callfail perror
 
 static struct termios original;
 static bool changed;
